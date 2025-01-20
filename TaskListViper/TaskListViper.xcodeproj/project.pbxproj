@@ -6,8 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		AF1878622D3EFFF5005DCD24 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1878612D3EFFF5005DCD24 /* Item+CoreDataProperties.swift */; };
+		AF1878632D3EFFF5005DCD24 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1878602D3EFFF5005DCD24 /* Item+CoreDataClass.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		AF1877DA2D3E4D4F005DCD24 /* TaskListViper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskListViper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF1878602D3EFFF5005DCD24 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataClass.swift"; path = "TaskListViper/Entities/Item+CoreDataClass.swift"; sourceTree = "<group>"; };
+		AF1878612D3EFFF5005DCD24 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataProperties.swift"; path = "TaskListViper/Entities/Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -32,6 +39,8 @@
 		AF1877D12D3E4D4F005DCD24 = {
 			isa = PBXGroup;
 			children = (
+				AF1878602D3EFFF5005DCD24 /* Item+CoreDataClass.swift */,
+				AF1878612D3EFFF5005DCD24 /* Item+CoreDataProperties.swift */,
 				AF1877DC2D3E4D4F005DCD24 /* TaskListViper */,
 				AF1877DB2D3E4D4F005DCD24 /* Products */,
 			);
@@ -119,6 +128,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF1878622D3EFFF5005DCD24 /* Item+CoreDataProperties.swift in Sources */,
+				AF1878632D3EFFF5005DCD24 /* Item+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
