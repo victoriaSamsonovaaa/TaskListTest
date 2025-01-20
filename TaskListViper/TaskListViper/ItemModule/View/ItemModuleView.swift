@@ -8,11 +8,22 @@
 import SwiftUI
 
 struct ItemModuleView: View {
+    
+    @State private var todo = ToDoItem(id: 4, todo: "Сделать зарядку или сделать тренировку дома", completed: false, userId: 203)
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading) {
+            Text(todo.title)
+                .font(.largeTitle)
+            Text(todo.todo)
+                .font(.body)
+                .foregroundStyle(.secondary)
+                    
+        }
     }
 }
 
 #Preview {
     ItemModuleView()
 }
+//(id: 4, todo: "Сделать зарядку или сделать тренировку дома", completed: false, userId: 203)

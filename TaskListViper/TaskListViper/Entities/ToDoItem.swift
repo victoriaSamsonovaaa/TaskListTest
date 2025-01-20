@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ToDoItem {
+struct ToDoItem {
     var id: Int
     var todo: String
     var completed: Bool
@@ -17,11 +17,16 @@ class ToDoItem {
         return todo.components(separatedBy: " ").first ?? " "
     }
     
+//    var curDate: String {
+//        let date = Date()
+//        return date.formatted(date: .abbreviated, time: .omitted)
+//    }
     
-    init(id: Int, todo: String, completed: Bool, userId: Int) {
-        self.id = id
-        self.todo = todo
-        self.completed = completed
-        self.userId = userId
+    var curDate: String {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy" 
+        return formatter.string(from: date)
     }
+    
 }

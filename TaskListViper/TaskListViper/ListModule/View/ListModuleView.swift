@@ -9,30 +9,18 @@ import SwiftUI
 
 struct ListModuleView: View {
     
-    @State private var todos: [ToDoItem] = []
+    @State private var todos: [ToDoItem] = [ToDoItem(id: 1, todo: "Do sport", completed: false, userId: 203), ToDoItem(id: 2, todo: "Do sport", completed: true, userId: 203)]
 
     var body: some View {
-        NavigationStack {
-            LazyVStack {
-                List(todos, id: \.id) { todo in
-                    NavigationLink {
-                        ItemModuleView()
-                    } label: {
-                        HStack {
-                            Image(systemName: todo.completed ? "checkmark.circle" : "circle")
-                                .foregroundStyle(todo.completed ? .yellow : .secondary)
-                            VStack {
-                                Text(todo.title)
-                                    .strikethrough(todo.completed, color: .secondary)
-                                    .bold()
-                                Text(todo.todo)
-                                    .tint(.secondary)
-                            }
-                            .foregroundStyle(todo.completed ? .primary : .secondary)
-                        }
-                    }
+        NavigationSplitView {
+            List(todos, id: \.id) { todo in
+                NavigationLink {
+                    ItemModuleView()
+                } label: {
+                    ToDoRowView(todo: todo)
                 }
             }
+            .listStyle(.inset)
             .navigationTitle("Tasks")
             .toolbar {
                 ToolbarItemGroup(placement: .bottomBar) {
@@ -47,8 +35,11 @@ struct ListModuleView: View {
                     }
                 }
             }
-            .tint(.yellow)
+            
+        } detail: {
+            Text("")
         }
+        .tint(.yellow)
     }
 }
 
