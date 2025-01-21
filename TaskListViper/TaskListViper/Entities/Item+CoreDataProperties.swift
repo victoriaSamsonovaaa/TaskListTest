@@ -16,11 +16,12 @@ extension Item {
         return NSFetchRequest<Item>(entityName: "Item")
     }
 
-    @NSManaged public var id: UUID
-    @NSManaged public var todo: String?
     @NSManaged public var completed: Bool
-    @NSManaged public var title: String?
     @NSManaged public var curDate: Date?
+    @NSManaged public var id: Int16
+    @NSManaged public var title: String?
+    @NSManaged public var todo: String?
+    @NSManaged public var userId: Int16
 
 }
 

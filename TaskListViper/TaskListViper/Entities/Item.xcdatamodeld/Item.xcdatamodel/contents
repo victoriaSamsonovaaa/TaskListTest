@@ -3,8 +3,9 @@
     <entity name="Item" representedClassName="Item" syncable="YES">
         <attribute name="completed" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="curDate" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
         <attribute name="todo" attributeType="String"/>
+        <attribute name="userId" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
 </model>

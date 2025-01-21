@@ -1,25 +1,25 @@
 //
-//  ItemModuleView.swift
+//  AddItemModuleView.swift
 //  TaskListViper
 //
-//  Created by Victoria Samsonova on 20.01.25.
+//  Created by Victoria Samsonova on 21.01.25.
 //
 
 import SwiftUI
 
-struct ItemModuleView: View {
-    
-    var todo: ToDoItem
-    @State private var newTodo = ""
-    
+struct AddItemModuleView: View {
+    @Environment(\.dismiss) private var dismiss
+    @State private var newTodo: String = ""
+    @State private var curDate: Date = Date()
+
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
-                    Text(todo.title)
+                    Text("Новое занятие")
                         .bold()
                         .font(.largeTitle)
-                    Text(todo.curDate)
+                    Text(curDate, style: .date)
                         .foregroundStyle(.secondary)
                         .font(.caption)
                 }
@@ -27,15 +27,14 @@ struct ItemModuleView: View {
                 TextEditor(text: $newTodo)
                 Spacer()
             }
-            .onAppear {
-                self.newTodo = todo.todo
-            }
-            .padding(.leading)
+            .padding()
         }
-
     }
 }
 
+
+
+
 #Preview {
-    ItemModuleView(todo: ToDoItem(id: 4, todo: "Сделать зарядку или сделать тренировку дома", completed: false, userId: 203))
+    AddItemModuleView()
 }
