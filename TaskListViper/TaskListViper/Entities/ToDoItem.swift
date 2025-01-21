@@ -44,7 +44,7 @@ struct ToDoItem: Codable {
         self.userId = try container.decode(Int16.self, forKey: .userId)
     }
     
-    init(from managedObject: Item) {
+    init(from managedObject: ItemModel) {
         self.id = managedObject.id
         self.todo = managedObject.todo!
         self.completed = managedObject.completed

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="24C101" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
-    <entity name="Item" representedClassName="Item" syncable="YES">
+    <entity name="ToDoEntity" representedClassName="ToDoEntity" syncable="YES" codeGenerationType="class">
         <attribute name="completed" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="curDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="title" attributeType="String"/>
         <attribute name="todo" attributeType="String"/>
         <attribute name="userId" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>

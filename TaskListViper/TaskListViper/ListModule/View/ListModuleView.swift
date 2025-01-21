@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct ListModuleView: View {
-    
+    @ObservedObject var presenter: ListModulePresenter
     @State private var searchText = ""
-    @State private var todos: [ToDoItem] = [ToDoItem(id: 1, todo: "Do sport", completed: false, userId: 203), ToDoItem(id: 2, todo: "Hacer deporte", completed: true, userId: 203)]
 
     var body: some View {
         NavigationStack {
-            List(searchResults, id: \.id) { todo in
+            List(presenter.todos, id: \.id) { todo in
                 NavigationLink {
                     ItemModuleView(todo: todo)
                 } label: {
@@ -24,37 +23,34 @@ struct ListModuleView: View {
             .listStyle(.inset)
             .navigationTitle("Tasks")
             .searchable(text: $searchText)
+            .onChange(of: searchText) { newValue in
+                presenter.viewSearchTextChanged(newValue)
+            }
             .toolbar {
                 ToolbarItemGroup(placement: .bottomBar) {
                     Spacer()
-                    Text("\(todos.count) \(todos.count == 1 ? "task" : "tasks")")
+                    Text("\(presenter.todos.count) \(presenter.todos.count == 1 ? "task" : "tasks")")
                         .foregroundStyle(.secondary)
                     Spacer()
-                    NavigationLink {
-                        AddItemModuleView()
+                    Button {
+                        presenter.router.navigateToAddItemModule()
                     } label: {
                         Image(systemName: "square.and.pencil")
                     }
-
                 }
             }
             
         } 
         .tint(.yellow)
-    }
-    
-    //потом перенести
-    var searchResults: [ToDoItem] {
-        if searchText.isEmpty {
-            return todos
-        } else {
-            return todos.filter {
-                $0.title.contains(searchText)
-            }
+        .onAppear {
+            presenter.viewDidLoad()
         }
     }
 }
 
 #Preview {
-    ListModuleView()
+    let interactor = ListModuleInteractor()
+    let router = ListModuleRouter()
+    let presenter = ListModulePresenter(interactor: interactor, router: router)
+    ListModuleView(presenter: presenter)
 }
