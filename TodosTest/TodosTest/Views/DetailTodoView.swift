@@ -53,7 +53,7 @@ struct DetailTodoView: View {
 
     }
 }
-
+//
 //#Preview {
 //    DetailTodoView()
 //}

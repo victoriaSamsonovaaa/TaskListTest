@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct AddTodoItemView: View {
-    @Environment(\.dismiss) private var dismiss
+    @StateObject private var viewModel: DetailTodoViewModel
+    
     @State private var newTodo: String = ""
     @State private var curDate: Date = Date()
 
@@ -27,14 +28,24 @@ struct AddTodoItemView: View {
                 TextEditor(text: $newTodo)
                 Spacer()
             }
+            .onDisappear {
+                viewModel.saveChanges()
+            }
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Save") {
+                        viewModel.saveChanges()
+                    }
+                }
+            }
             .padding()
         }
     }
 }
 
-
-
-
-#Preview {
-    AddTodoItemView()
-}
+//
+//
+//
+//#Preview {
+//    AddTodoItemView()
+//}

@@ -11,7 +11,7 @@ import CoreData
 class CoreDataManager {
     static let shared = CoreDataManager()
     let persistentContainer: NSPersistentContainer
-    var searchText: String
+    var searchText: String = ""
     
     var viewContext: NSManagedObjectContext {
         return persistentContainer.viewContext
@@ -19,7 +19,6 @@ class CoreDataManager {
     
     private init() {
         persistentContainer = NSPersistentContainer(name: "TodosModel")
-        searchText = ""
         
         persistentContainer.loadPersistentStores { (description, error) in
             if let error = error {
@@ -37,17 +36,26 @@ class CoreDataManager {
             }
         }
     }
+    
     func saveContext() {
-        do {
-            try viewContext.save()
-        } catch {
-            viewContext.rollback()
-            print(error.localizedDescription)
+        if viewContext.hasChanges {
+            do {
+                try viewContext.save()
+            } catch {
+                viewContext.rollback()
+                print(error.localizedDescription)
+            }
         }
     }
     
     
     func getAllTodos() -> [ToDoEntity] {
+        if CoreDataManager.shared.getAllTodos().isEmpty {
+            let todoDataService = TodoDataService()
+            todoDataService.fetchFromApi()
+            return CoreDataManager.shared.getAllTodos()
+        }
+        
         let request = NSFetchRequest<ToDoEntity>(entityName: "ToDoEntity")
         do {
             return try viewContext.fetch(request)

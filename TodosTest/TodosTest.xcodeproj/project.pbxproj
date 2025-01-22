@@ -6,15 +6,8 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		AFD998192D4150A600AD8CE7 /* ToDoEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD998182D4150A600AD8CE7 /* ToDoEntity+CoreDataProperties.swift */; };
-		AFD9981A2D4150A600AD8CE7 /* ToDoEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD998172D4150A600AD8CE7 /* ToDoEntity+CoreDataClass.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
 		AF4A74452D405B3000861CE5 /* TodosTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodosTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AFD998172D4150A600AD8CE7 /* ToDoEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDoEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		AFD998182D4150A600AD8CE7 /* ToDoEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDoEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -39,8 +32,6 @@
 		AF4A743C2D405B3000861CE5 = {
 			isa = PBXGroup;
 			children = (
-				AFD998172D4150A600AD8CE7 /* ToDoEntity+CoreDataClass.swift */,
-				AFD998182D4150A600AD8CE7 /* ToDoEntity+CoreDataProperties.swift */,
 				AF4A74472D405B3000861CE5 /* TodosTest */,
 				AF4A74462D405B3000861CE5 /* Products */,
 			);
@@ -128,8 +119,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFD998192D4150A600AD8CE7 /* ToDoEntity+CoreDataProperties.swift in Sources */,
-				AFD9981A2D4150A600AD8CE7 /* ToDoEntity+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
