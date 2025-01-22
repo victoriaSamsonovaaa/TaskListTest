@@ -13,18 +13,15 @@ class TodosListViewModel: ObservableObject {
     
     @Published var savedEntities: [ToDoEntity] = []
     @Published var searchText = ""
-    @Published var isLoading = false
     
     
     private var todoDataService = TodoDataService()
     
     func fetchTodosFromApi() {
-        guard savedEntities.isEmpty else { return }
-        isLoading = true
+        guard CoreDataManager.shared.getAllTodos().isEmpty else { return }
         todoDataService.fetchFromApi()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
             self?.getAllTodos()
-            self?.isLoading = false
         }
     }
     
@@ -37,32 +34,36 @@ class TodosListViewModel: ObservableObject {
         getAllTodos()
     }
     
-    func updateTodos() {
-        CoreDataManager.shared.saveContext()
-        getAllTodos()
-    }
-    
-    
     func deleteTodo(todo: ToDoEntity) {
         CoreDataManager.shared.deleteTodo(todo: todo)
         getAllTodos()
     }
     
-    func removeTodo(at offsets: IndexSet) {
+    func removeTodo(at offsets: IndexSet, from todos: FetchedResults<ToDoEntity>) {
         for index in offsets {
-            let todo = searchResults[index]
-            deleteTodo(todo: todo)
+            let todo = todos[index]
+            CoreDataManager.shared.deleteTodo(todo: todo)
         }
     }
     
-    var searchResults: [ToDoEntity] {
+    func filteredTodos(from todos: FetchedResults<ToDoEntity>) -> [ToDoEntity] {
         if searchText.isEmpty {
-            return savedEntities
+            return Array(todos)
         } else {
-            return savedEntities.filter {
+            return todos.filter {
                 $0.title.contains(searchText)
             }
         }
     }
+    
+//    var searchResults: [ToDoEntity] {
+//        if searchText.isEmpty {
+//            return savedEntities
+//        } else {
+//            return savedEntities.filter {
+//                $0.title.contains(searchText)
+//            }
+//        }
+//    }
 
 }

@@ -12,20 +12,21 @@ struct TodosListView: View {
     
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \ToDoEntity.createdAt, ascending: false)]
-    ) private var todos: FetchedResults<ToDoEntity>
+    ) var todos: FetchedResults<ToDoEntity>
 
-    
     var body: some View {
         NavigationStack {
             List {
-                ForEach(viewModel.searchResults, id: \.id) { todo in
+                ForEach(viewModel.filteredTodos(from: todos), id: \.id) { todo in
                     NavigationLink {
                         DetailTodoView(todo: todo)
                     } label: {
                         ToDoRowView(todo: todo)
                     }
                 }
-                .onDelete(perform: viewModel.removeTodo)
+                .onDelete {
+                    viewModel.removeTodo(at: $0, from: todos)
+                }
             }
             .listStyle(.inset)
             .navigationTitle("Tasks")
@@ -33,8 +34,8 @@ struct TodosListView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .bottomBar) {
                     Spacer()
-                    Text("\(viewModel.searchResults.count) \(viewModel.searchResults.count == 1 ? "task" : "tasks")")
-                        .foregroundStyle(.secondary)
+                    Text("\(viewModel.filteredTodos(from: todos).count) \(viewModel.filteredTodos(from: todos).count == 1 ? "task" : "tasks")")
+                                            .foregroundStyle(.secondary)
                     
                     Spacer()
                     NavigationLink {
