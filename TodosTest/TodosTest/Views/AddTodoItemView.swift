@@ -26,9 +26,6 @@ struct AddTodoItemView: View {
                 TextEditor(text: $viewModel.newTodoText)
                 Spacer()
             }
-            .onDisappear {
-                viewModel.addNewTodo()
-            }
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     if !viewModel.newTodoText.isEmpty {

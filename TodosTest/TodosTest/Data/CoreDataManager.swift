@@ -83,7 +83,6 @@ class CoreDataManager {
         newTodo.createdAt = Date()
         newTodo.id = getMaxId() + 1
         saveContext()
-        
     }
 
     func deleteTodo(todo: ToDoEntity) {

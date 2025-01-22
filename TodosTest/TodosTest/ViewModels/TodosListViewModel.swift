@@ -60,8 +60,9 @@ class TodosListViewModel: ObservableObject {
             return savedEntities
         } else {
             return savedEntities.filter {
-                $0.todo?.localizedCaseInsensitiveContains(searchText) ?? false
+                $0.title.contains(searchText)
             }
         }
     }
+
 }
