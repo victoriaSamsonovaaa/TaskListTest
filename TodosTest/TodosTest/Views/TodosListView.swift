@@ -56,13 +56,24 @@ struct TodosListView: View {
     
     var body: some View {
         NavigationStack {
-            List(viewModel.searchResults, id: \.id) { todo in
-                NavigationLink {
-                    DetailTodoView(todo: todo)
-                } label: {
-                    ToDoRowView(todo: todo)
+            List {
+                ForEach(viewModel.searchResults, id: \.id) { todo in
+                    NavigationLink {
+                        DetailTodoView(todo: todo)
+                    } label: {
+                        ToDoRowView(todo: todo)
+                    }
                 }
+                .onDelete(perform: viewModel.removeTodo)
             }
+            
+//            List(viewModel.searchResults, id: \.id) { todo in
+//                NavigationLink {
+//                    DetailTodoView(todo: todo)
+//                } label: {
+//                    ToDoRowView(todo: todo)
+//                }
+//            }
             .listStyle(.inset)
             .navigationTitle("Tasks")
             .searchable(text: $viewModel.searchText)
@@ -74,7 +85,7 @@ struct TodosListView: View {
                     
                     Spacer()
                     NavigationLink {
-//AddTodoItemView()
+                        AddTodoItemView()
                     } label: {
                         Image(systemName: "square.and.pencil")
                     }

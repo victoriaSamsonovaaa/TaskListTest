@@ -11,12 +11,7 @@ class AddTodoItemViewModel: ObservableObject {
     @Published var newTodoText: String = ""
     @Published var curDate: Date = Date()
 
-    func addNewTodo(todo: String) {
-        CoreDataManager.shared.addTodo(todo: todo)
-        saveTodo()
-    }
-    
-    func saveTodo() {
-        CoreDataManager.shared.saveContext()
+    func addNewTodo() {
+        CoreDataManager.shared.addTodo(todo: newTodoText)
     }
 }

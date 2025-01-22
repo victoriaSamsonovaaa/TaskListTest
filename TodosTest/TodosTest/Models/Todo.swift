@@ -12,6 +12,8 @@ struct Todo: Codable {
     let userId: Int16
     let completed: Bool
     let todo: String?
+    
+    
 }
 
 struct TodoResponse: Codable {

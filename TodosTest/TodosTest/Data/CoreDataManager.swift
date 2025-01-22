@@ -48,6 +48,22 @@ class CoreDataManager {
         }
     }
     
+    func getMaxId() -> Int16 {
+        let request: NSFetchRequest<ToDoEntity> = ToDoEntity.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        request.fetchLimit = 1
+
+        do {
+            if let maxId = try viewContext.fetch(request).first?.id {
+                return maxId
+            }
+        } catch {
+            print("error")
+        }
+        
+        return 0  
+    }
+    
     
     func getAllTodos() -> [ToDoEntity] {
         let request = NSFetchRequest<ToDoEntity>(entityName: "ToDoEntity")
@@ -65,8 +81,9 @@ class CoreDataManager {
         newTodo.completed = false
         newTodo.todo = todo
         newTodo.createdAt = Date()
-        newTodo.id = Int16(Date().timeIntervalSince1970)
+        newTodo.id = getMaxId() + 1
         saveContext()
+        
     }
 
     func deleteTodo(todo: ToDoEntity) {

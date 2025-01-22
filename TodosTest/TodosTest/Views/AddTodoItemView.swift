@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct AddTodoItemView: View {
-    @StateObject private var viewModel: AddTodoItemViewModel
+    @Environment(\.dismiss) var dismiss
+    @StateObject private var viewModel = AddTodoItemViewModel()
     
     var body: some View {
         NavigationView {
@@ -26,13 +27,14 @@ struct AddTodoItemView: View {
                 Spacer()
             }
             .onDisappear {
-                viewModel.saveTodo()
+                viewModel.addNewTodo()
             }
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     if !viewModel.newTodoText.isEmpty {
                         Button("Save") {
-                            viewModel.saveTodo()
+                            viewModel.addNewTodo()
+                            dismiss()
                         }
                     }
                 }
@@ -42,9 +44,6 @@ struct AddTodoItemView: View {
     }
 }
 
-//
-//
-//
-//#Preview {
-//    AddTodoItemView()
-//}
+#Preview {
+    AddTodoItemView()
+}

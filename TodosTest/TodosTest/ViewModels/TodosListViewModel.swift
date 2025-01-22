@@ -48,6 +48,13 @@ class TodosListViewModel: ObservableObject {
         getAllTodos()
     }
     
+    func removeTodo(at offsets: IndexSet) {
+        for index in offsets {
+            let todo = searchResults[index]
+            deleteTodo(todo: todo)
+        }
+    }
+    
     var searchResults: [ToDoEntity] {
         if searchText.isEmpty {
             return savedEntities
