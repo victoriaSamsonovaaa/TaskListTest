@@ -8,33 +8,32 @@
 import SwiftUI
 
 struct AddTodoItemView: View {
-    @StateObject private var viewModel: DetailTodoViewModel
+    @StateObject private var viewModel: AddTodoItemViewModel
     
-    @State private var newTodo: String = ""
-    @State private var curDate: Date = Date()
-
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
-                    Text("Новое занятие")
+                    Text("New task")
                         .bold()
                         .font(.largeTitle)
-                    Text(curDate, style: .date)
+                    Text(viewModel.curDate, style: .date)
                         .foregroundStyle(.secondary)
                         .font(.caption)
                 }
                 .padding(.horizontal, 6)
-                TextEditor(text: $newTodo)
+                TextEditor(text: $viewModel.newTodoText)
                 Spacer()
             }
             .onDisappear {
-                viewModel.saveChanges()
+                viewModel.saveTodo()
             }
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
-                        viewModel.saveChanges()
+                    if !viewModel.newTodoText.isEmpty {
+                        Button("Save") {
+                            viewModel.saveTodo()
+                        }
                     }
                 }
             }

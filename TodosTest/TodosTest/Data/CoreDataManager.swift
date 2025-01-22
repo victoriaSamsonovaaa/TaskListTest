@@ -50,12 +50,6 @@ class CoreDataManager {
     
     
     func getAllTodos() -> [ToDoEntity] {
-        if CoreDataManager.shared.getAllTodos().isEmpty {
-            let todoDataService = TodoDataService()
-            todoDataService.fetchFromApi()
-            return CoreDataManager.shared.getAllTodos()
-        }
-        
         let request = NSFetchRequest<ToDoEntity>(entityName: "ToDoEntity")
         do {
             return try viewContext.fetch(request)

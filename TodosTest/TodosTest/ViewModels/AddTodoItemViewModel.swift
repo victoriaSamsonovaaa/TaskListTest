@@ -9,6 +9,7 @@ import Foundation
 
 class AddTodoItemViewModel: ObservableObject {
     @Published var newTodoText: String = ""
+    @Published var curDate: Date = Date()
 
     func addNewTodo(todo: String) {
         CoreDataManager.shared.addTodo(todo: todo)

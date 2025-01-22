@@ -13,7 +13,20 @@ class TodosListViewModel: ObservableObject {
     
     @Published var savedEntities: [ToDoEntity] = []
     @Published var searchText = ""
+    @Published var isLoading = false
     
+    
+    private var todoDataService = TodoDataService()
+    
+    func fetchTodosFromApi() {
+        guard savedEntities.isEmpty else { return }
+        isLoading = true
+        todoDataService.fetchFromApi()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+            self?.getAllTodos()
+            self?.isLoading = false
+        }
+    }
     
     func getAllTodos() {
         savedEntities = CoreDataManager.shared.getAllTodos()

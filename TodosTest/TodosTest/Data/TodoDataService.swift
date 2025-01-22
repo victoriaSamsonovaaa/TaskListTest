@@ -14,7 +14,7 @@ class TodoDataService {
         guard let url = URL(string: "https://dummyjson.com/todos") else { return }
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             guard let self = self, let data = data, error == nil else {
-                print("Failed to fetch todos: \(error?.localizedDescription ?? "Unknown error")")
+                print("failed to fetch \(error?.localizedDescription ?? "idk")")
                 return
             }
             do {
@@ -23,7 +23,6 @@ class TodoDataService {
                     self.saveToCoreData(todos: todoResponse.todos)
                     self.loadFromCoreData()
                 }
-                print("olllllll")
             }
             catch {
                 print("failed to decode todos: \(error)")
@@ -52,4 +51,5 @@ class TodoDataService {
         }
     }
 }
+
 
