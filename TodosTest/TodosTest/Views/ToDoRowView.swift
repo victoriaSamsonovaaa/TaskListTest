@@ -17,14 +17,14 @@ struct ToDoRowView: View {
                 .padding(.top, 4)
                 .foregroundStyle(todo.completed ? .yellow : .secondary)
             VStack(alignment: .leading) {
-               // Text(todo.title)
-               //     .font(.title2)
-                //    .strikethrough(todo.completed, color: .secondary)
+                Text(todo.title)
+                    .font(.title2)
+                    .strikethrough(todo.completed, color: .secondary)
                 Text(todo.todo!)
                     .font(.body)
-                //Text(todo.curDate)
-                //    .font(.body)
-                  //  .foregroundStyle(.secondary)
+                Text(todo.curDate)
+                    .font(.body)
+                    .foregroundStyle(.secondary)
             }
             .foregroundStyle(todo.completed ? .secondary : .primary)
         }

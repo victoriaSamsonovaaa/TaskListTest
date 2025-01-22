@@ -8,11 +8,47 @@
 import SwiftUI
 
 struct DetailTodoView: View {
+    
+    @State private var viewModel = DetailTodoViewModel()
+    
+    var todo: ToDoEntity
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack(alignment: .leading) {
+                VStack(alignment: .leading) {
+                    Text(viewModel.todoTitle)
+                        .bold()
+                        .font(.largeTitle)
+                    Text(viewModel.todoCurDate)
+                        .foregroundStyle(.secondary)
+                        .font(.caption)
+                }
+                .padding(.horizontal, 6)
+                
+                TextEditor(text: $viewModel.todoText)
+                    .onSubmit {
+                        viewModel.saveChanges()
+                    }
+                
+                Spacer()
+            }
+            .onDisappear {
+                viewModel.saveChanges() 
+            }
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Save") {
+                        viewModel.saveChanges()
+                    }
+                }
+            }
+            .padding(.leading)
+        }
+
     }
 }
 
-#Preview {
-    DetailTodoView()
-}
+//#Preview {
+//    DetailTodoView()
+//}

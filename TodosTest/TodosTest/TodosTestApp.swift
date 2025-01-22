@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct TodosTestApp: App {
+    
+    @StateObject private var coreDataViewModel = CoreDataViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TodosListView()
+                .environmentObject(coreDataViewModel)
         }
     }
 }
