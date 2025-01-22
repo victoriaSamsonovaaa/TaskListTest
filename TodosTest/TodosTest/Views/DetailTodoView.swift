@@ -9,27 +9,32 @@ import SwiftUI
 
 struct DetailTodoView: View {
     
-    @State private var viewModel = DetailTodoViewModel()
+    @StateObject private var viewModel: DetailTodoViewModel
     
-    var todo: ToDoEntity
+    init(todo: ToDoEntity) {
+        _viewModel = StateObject(wrappedValue: DetailTodoViewModel(todoEntity: todo))
+    }
     
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
                 VStack(alignment: .leading) {
-                    Text(viewModel.todoTitle)
+                    Text(viewModel.todoEntity.title)
                         .bold()
                         .font(.largeTitle)
-                    Text(viewModel.todoCurDate)
+                    Text(viewModel.todoEntity.curDate)
                         .foregroundStyle(.secondary)
                         .font(.caption)
                 }
                 .padding(.horizontal, 6)
                 
-                TextEditor(text: $viewModel.todoText)
-                    .onSubmit {
+                TextEditor(text: Binding(
+                    get: { viewModel.todoEntity.todo ?? ""},
+                    set: { newValue in
+                        viewModel.todoEntity.todo = newValue
                         viewModel.saveChanges()
                     }
+                ))
                 
                 Spacer()
             }

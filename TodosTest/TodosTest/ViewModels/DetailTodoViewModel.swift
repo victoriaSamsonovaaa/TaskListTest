@@ -9,21 +9,14 @@ import Foundation
 import SwiftUI
 
 class DetailTodoViewModel: ObservableObject {
-    
-    @Published var todoText: String = ""
-    @State private var coreDataViewModel = CoreDataViewModel()
-    private let todo = ToDoEntity()
-    
-    
-    var todoTitle: String {
-        return todo.todo?.components(separatedBy: " ").first ?? "Untitled"
-    }
-    
-    var todoCurDate: String {
-        return todo.createdAt?.formatted(date: .abbreviated, time: .shortened) ?? "Unknown Date"
+
+    @Published var todoEntity: ToDoEntity
+
+    init(todoEntity: ToDoEntity) {
+        self.todoEntity = todoEntity
     }
     
     func saveChanges() {
-        coreDataViewModel.updateTodo(todo, todoText: todoText)
+        CoreDataManager.shared.saveContext()
     }
 }

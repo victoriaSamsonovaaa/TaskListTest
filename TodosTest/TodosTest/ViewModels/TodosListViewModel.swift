@@ -6,21 +6,33 @@
 //
 
 import Foundation
+import SwiftData
 import SwiftUI
 
 class TodosListViewModel: ObservableObject {
     
     @Published var savedEntities: [ToDoEntity] = []
     @Published var searchText = ""
-    @State private var coreDataViewModel = CoreDataViewModel()
     
-    init(coreDataViewModel: CoreDataViewModel) {
-        self.coreDataViewModel = coreDataViewModel
-        fetchTodos()
+    
+    func getAllTodos() {
+        savedEntities = CoreDataManager.shared.getAllTodos()
     }
     
-    func fetchTodos() {
-        savedEntities = coreDataViewModel.fetchTodos()
+    func addTodo(todo: String) {
+        CoreDataManager.shared.addTodo(todo: todo)
+        getAllTodos()
+    }
+    
+    func updateTodos() {
+        CoreDataManager.shared.saveContext()
+        getAllTodos()
+    }
+    
+    
+    func deleteTodo(todo: ToDoEntity) {
+        CoreDataManager.shared.deleteTodo(todo: todo)
+        getAllTodos()
     }
     
     var searchResults: [ToDoEntity] {

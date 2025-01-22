@@ -9,13 +9,13 @@ import Foundation
 
 class AddTodoItemViewModel: ObservableObject {
     @Published var newTodoText: String = ""
-    private let coreDataViewModel: CoreDataViewModel
-    
-    init(coreDataViewModel: CoreDataViewModel) {
-        self.coreDataViewModel = coreDataViewModel
+
+    func addNewTodo(todo: String) {
+        CoreDataManager.shared.addTodo(todo: todo)
+        saveTodo()
     }
-        
-    func addNewTodo() {
-        coreDataViewModel.addTodo(newTodoText)
+    
+    func saveTodo() {
+        CoreDataManager.shared.saveContext()
     }
 }

@@ -6,16 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct TodosTestApp: App {
     
-    @StateObject private var coreDataViewModel = CoreDataViewModel()
-    
     var body: some Scene {
         WindowGroup {
             TodosListView()
-                .environmentObject(coreDataViewModel)
+                .environment(\.managedObjectContext, CoreDataManager.shared.viewContext)
         }
     }
 }

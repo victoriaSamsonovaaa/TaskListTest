@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TodosListView: View {
     
-    @State private var viewModel = TodosListViewModel()
+    @StateObject private var viewModel = TodosListViewModel()
 
     var body: some View {
         NavigationStack {
