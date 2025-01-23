@@ -46,7 +46,7 @@ class TodosListViewModel: ObservableObject {
         }
     }
     
-    func filteredTodos(from todos: FetchedResults<ToDoEntity>) -> [ToDoEntity] {
+    func fetchedTodos(from todos: FetchedResults<ToDoEntity>) -> [ToDoEntity] {
         if searchText.isEmpty {
             return Array(todos)
         } else {

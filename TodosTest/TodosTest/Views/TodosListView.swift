@@ -17,7 +17,7 @@ struct TodosListView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(viewModel.filteredTodos(from: todos), id: \.id) { todo in
+                ForEach(viewModel.fetchedTodos(from: todos), id: \.id) { todo in
                     NavigationLink {
                         DetailTodoView(todo: todo)
                     } label: {
@@ -34,8 +34,8 @@ struct TodosListView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .bottomBar) {
                     Spacer()
-                    Text("\(viewModel.filteredTodos(from: todos).count) \(viewModel.filteredTodos(from: todos).count == 1 ? "task" : "tasks")")
-                                            .foregroundStyle(.secondary)
+                    Text("\(viewModel.fetchedTodos(from: todos).count) \(viewModel.fetchedTodos(from: todos).count == 1 ? "task" : "tasks")")
+                        .foregroundStyle(.secondary)
                     
                     Spacer()
                     NavigationLink {
@@ -43,7 +43,6 @@ struct TodosListView: View {
                     } label: {
                         Image(systemName: "square.and.pencil")
                     }
-
                 }
             }
         }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DetailTodoView: View {
     
+    @Environment(\.dismiss) var dismiss
     @StateObject private var viewModel: DetailTodoViewModel
     
     init(todo: ToDoEntity) {
@@ -45,6 +46,7 @@ struct DetailTodoView: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
                         viewModel.saveChanges()
+                        dismiss()
                     }
                 }
             }

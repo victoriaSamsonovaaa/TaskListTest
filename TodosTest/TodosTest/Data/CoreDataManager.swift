@@ -42,7 +42,6 @@ class CoreDataManager {
             do {
                 try viewContext.save()
             } catch {
-                viewContext.rollback()
                 print(error.localizedDescription)
             }
         }

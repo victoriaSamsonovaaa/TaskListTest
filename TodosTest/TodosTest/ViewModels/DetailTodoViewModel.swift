@@ -17,6 +17,10 @@ class DetailTodoViewModel: ObservableObject {
     }
     
     func saveChanges() {
-        CoreDataManager.shared.saveContext()
+        if todoEntity.todo?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == true {
+            CoreDataManager.shared.deleteTodo(todo: todoEntity)
+        } else {
+            CoreDataManager.shared.saveContext()
+        }
     }
 }
