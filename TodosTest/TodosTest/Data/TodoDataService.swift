@@ -8,6 +8,7 @@
 import Foundation
 
 class TodoDataService {
+    
     @Published var todos: [Todo] = []
     
     func fetchFromApi() {

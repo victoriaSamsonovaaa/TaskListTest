@@ -9,11 +9,10 @@ import Foundation
 import SwiftData
 import SwiftUI
 
-class TodosListViewModel: ObservableObject {
+final class TodosListViewModel: ObservableObject {
     
     @Published var savedEntities: [ToDoEntity] = []
     @Published var searchText = ""
-    
     
     private var todoDataService = TodoDataService()
     
@@ -55,15 +54,4 @@ class TodosListViewModel: ObservableObject {
             }
         }
     }
-    
-//    var searchResults: [ToDoEntity] {
-//        if searchText.isEmpty {
-//            return savedEntities
-//        } else {
-//            return savedEntities.filter {
-//                $0.title.contains(searchText)
-//            }
-//        }
-//    }
-
 }

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class DetailTodoViewModel: ObservableObject {
+final class DetailTodoViewModel: ObservableObject {
 
     @Published var todoEntity: ToDoEntity
 

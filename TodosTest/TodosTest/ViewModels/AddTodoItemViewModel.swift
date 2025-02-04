@@ -7,7 +7,8 @@
 
 import Foundation
 
-class AddTodoItemViewModel: ObservableObject {
+final class AddTodoItemViewModel: ObservableObject {
+    
     @Published var newTodoText: String = ""
     @Published var curDate: Date = Date()
 
